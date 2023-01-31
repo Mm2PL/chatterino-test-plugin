@@ -1,0 +1,13 @@
+{
+    "name": "Test plugin",
+    "description": "This plugin is for testing stuff.",
+    "authors": "Mm2PL",
+    "homepage": "https://github.com/Chatterino/Chatterino2",
+    "tags": [
+        "test"
+    ],
+    "library_permissions": [
+        "_G",
+        "table"
+    ]
+}
