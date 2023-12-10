@@ -35,7 +35,7 @@ function onCompletion(query, full_text_content, cursor_position, is_first_word)
         values = {},
     }
     c2.system_msg("pajlada", "Completing! " .. query .. "; " .. full_text_content .. "!")
-    if startswith(full_text_content, "/foo") then
+    if startswith(full_text_content, "/foo ") then
         -- note this doesn't account for completion being anything after the 2nd argument
         list.values = {"barbazA", "bazbarB"}
         list.hide_others = true
