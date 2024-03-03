@@ -9,5 +9,15 @@
         "test"
     ],
     "version": "0.0.0",
-    "license": "MIT"
+    "license": "MIT",
+    "permissions": [
+        {
+            "type": "FilesystemRead",
+            "paths": ["test"]
+        },
+        {
+            "type": "FilesystemWrite",
+            "paths": ["test"]
+        }
+    ]
 }

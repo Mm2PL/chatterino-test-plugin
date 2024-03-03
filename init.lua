@@ -31,6 +31,35 @@ function cmdFoo(ctx)
     end
 end
 
+function cmd_filesystem(ctx)
+    table.remove(ctx.words, 1)
+    local filename = "test"
+    local TEST_STRING = 'This is a test!\nHere is second line\n'
+
+    ctx.channel:add_system_message("Opening file \"" .. filename .. "\" for writing.")
+    local file = io.open(filename, 'w')
+    ctx.channel:add_system_message("Writing " .. tostring(#TEST_STRING) .. " bytes.")
+    print('Write', txt)
+    file:write(TEST_STRING)
+    file:close()
+
+    ctx.channel:add_system_message("Opening file \"" .. filename .. "\" for reading.")
+    file = io.open(filename)
+    txt = file:read('a')
+    ctx.channel:add_system_message("Read " .. tostring(#txt) .. " bytes.")
+    file:close()
+    print(txt)
+
+    ctx.channel:add_system_message("Opening file \"" .. filename .. "\" for reading using alternate API.")
+    io.input(filename)
+
+    local i = 1
+    for l in io.lines() do
+        print('Line ' .. tostring(i) .. ': ' .. l)
+        i = i + 1
+    end
+end
+
 function onCompletion(query, full_text_content, cursor_position, is_first_word)
     local list = {
         hide_others = false,
@@ -47,4 +76,5 @@ end
 
 c2.register_command("/eval", cmdEval)
 c2.register_command("/foo", cmdFoo)
+c2.register_command("/test-fs", cmd_filesystem)
 c2.register_callback(c2.EventType.CompletionRequested, onCompletion)
