@@ -23,11 +23,11 @@ function cmdFoo(ctx)
     table.remove(ctx.words, 1)
     local sub = ctx.words[1]
     if sub == "barbazA" then
-        c2.system_msg(ctx.channel_name, "You used the first subcommand")
+        ctx.channel:add_system_message("You used the first subcommand")
     elseif sub == "bazbarB" then
-        c2.system_msg(ctx.channel_name, "You used the second subcommand")
+        ctx.channel:add_system_message("You used the second subcommand")
     else
-        c2.system_msg(ctx.channel_name, "You used neither subcommand. Try barbazA and bazbarB")
+        ctx.channel:add_system_message("You used neither subcommand. Try barbazA and bazbarB")
     end
 end
 
@@ -36,7 +36,7 @@ function onCompletion(query, full_text_content, cursor_position, is_first_word)
         hide_others = false,
         values = {},
     }
-    c2.system_msg("pajlada", "Completing! " .. query .. "; " .. full_text_content .. "!")
+    c2.Channel.by_name("pajlada", c2.Platform.Twitch):add_system_message("Completing! " .. query .. "; " .. full_text_content .. "!")
     if startswith(full_text_content, "/foo ") then
         -- note this doesn't account for completion being anything after the 2nd argument
         list.values = {"barbazA", "bazbarB"}
