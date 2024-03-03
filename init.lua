@@ -3,13 +3,15 @@ print("FeelsDankMan!!!!")
 function cmdEval(ctx)
     table.remove(ctx.words, 1)
     local input = table.concat(ctx.words, " ")
-    local source = "return " .. input
-    c2.system_msg(ctx.channel_name, ">>>" .. input)
+    local source = ("local args = {...}\n"
+        .. "local ctx = args[1]\n"
+        .. "return " .. input)
+    ctx.channel:add_system_message(">>>" .. input)
     local f, err = load(source)
     if f == nil then
-        c2.system_msg(ctx.channel_name "!<" .. tostring(err))
+        ctx.channel:add_system_message("!<" .. tostring(err))
     else
-        c2.system_msg(ctx.channel_name, "<< " .. tostring(f()))
+        ctx.channel:add_system_message("<< " .. tostring(f(ctx)))
     end
 end
 
