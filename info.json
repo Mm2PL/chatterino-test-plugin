@@ -12,12 +12,13 @@
     "license": "MIT",
     "permissions": [
         {
-            "type": "FilesystemRead",
-            "paths": ["test"]
+            "type": "FilesystemRead"
         },
         {
-            "type": "FilesystemWrite",
-            "paths": ["test"]
+            "type": "FilesystemWrite"
+        },
+        {
+            "type": "HTTP"
         }
     ]
 }
